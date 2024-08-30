@@ -15,12 +15,16 @@ export const getAllProducts = createAsyncThunk("getAllProducts", async () => {
   const response = await axios.get(`${BASE_URL}/products`);
   return response.data;
 });
-// ---------------------------------------------------------------------------------------------
+// ------------------------------------------------------
 
 export const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedProducts: (state, action) => {
+      state.selectedProducts = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // <-- Bu reducer içi API isteklerini yönetirken createAsyncThunk ile birlikte kullanilir
 
@@ -35,6 +39,6 @@ export const productSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {} = productSlice.actions;
+export const { setSelectedProducts } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -4,9 +4,14 @@ import { CiShoppingBasket } from "react-icons/ci";
 import { CiLight } from "react-icons/ci";
 import { FaMoon } from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Badge from "@mui/material/Badge";
 
 export default function Header() {
   const [theme, setTheme] = useState(false);
+
+  const navigate = useNavigate();
+
   const changeTheme = () => {
     const root = document.getElementById("root");
 
@@ -22,7 +27,7 @@ export default function Header() {
 
   return (
     <div className="flex-row" style={{ justifyContent: "space-between" }}>
-      <div className="flex-row">
+      <div className="flex-row" onClick={() => navigate("/")}>
         <img className="logo" src="./src/images/logo2.png" />
         <p className="logo-text">BEAUTY LTD</p>
       </div>
@@ -39,8 +44,9 @@ export default function Header() {
           ) : (
             <CiLight className="icon" onClick={changeTheme} />
           )}
-          {/*  */}
-          <CiShoppingBasket className="icon" />
+          <Badge badgeContent={4} color="success">
+            <CiShoppingBasket className="icon" />
+          </Badge>
         </div>
       </div>
     </div>
