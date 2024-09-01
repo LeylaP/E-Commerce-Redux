@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { setSelectedProducts } from "../redux/slices/productSlice";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { AiOutlineMinusCircle } from "react-icons/ai";
-import { addToBasket } from "../redux/slices/basketSlice";
+import { addToBasket, calculateBasket } from "../redux/slices/basketSlice";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -34,6 +34,7 @@ export default function ProductDetails() {
       count,
     };
     dispatch(addToBasket(payload));
+    dispatch(calculateBasket());
   };
 
   useEffect(() => {
